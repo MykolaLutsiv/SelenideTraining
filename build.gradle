@@ -22,6 +22,7 @@
     allure {
         autoconfigure = true
         version = allureVer  // Latest Allure Version
+        aspectjweaver = true
 
         useJUnit5 {
             version allureVer // Latest Allure Version
@@ -32,8 +33,11 @@
     dependencies {
         implementation('com.codeborne:selenide:5.10.0')
         implementation("io.qameta.allure:allure-java-commons:$allureVer")
-        implementation("io.qameta.allure:allure-junit5:$allureVer")
-        implementation("io.qameta.allure:allure-selenide:$allureVer")
+        implementation("org.aspectj:aspectjweaver:1.9.4")
+
+        testImplementation("io.qameta.allure:allure-junit5:$allureVer")
+        testImplementation("io.qameta.allure:allure-selenide:$allureVer")
+
         testCompileOnly("org.junit.jupiter:junit-jupiter-api:$junit5Ver")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junit5Ver")
     }
