@@ -51,10 +51,15 @@ public class SearchTests extends BasePage {
 
         var productName = "Z3X Easy-Jtag Plus Full Set";
         new HomePage().searchFor(productName);
-        var actualSearchResultTitle = new SearchResultPage().getSearchResultTitle();
 
+        var actualSearchResultTitle = new SearchResultPage().getSearchResultTitle();
         Assertions.assertEquals(productName, actualSearchResultTitle);
 
+        var actualSearchResultListSize = new SearchResultPage().getSearchResultListSize();
+        Assertions.assertEquals(20, actualSearchResultListSize);
+
+        var actualFirstProductInfoTitle = new SearchResultPage().getFirstProductInfoTitle();
+        Assertions.assertEquals(productName, actualFirstProductInfoTitle);
     }
 
 }
