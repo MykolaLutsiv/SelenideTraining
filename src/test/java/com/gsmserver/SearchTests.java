@@ -56,7 +56,7 @@ public class SearchTests extends BasePage {
         Assertions.assertEquals(productName, actualSearchResultTitle);
 
         var actualSearchResultListSize = new SearchResultPage().getSearchResultListSize();
-        Assertions.assertEquals(20, actualSearchResultListSize);
+        Assertions.assertEquals(3, actualSearchResultListSize);
 
         var actualFirstProductInfoTitle = new SearchResultPage().getFirstProductInfoTitle();
         Assertions.assertEquals(productName, actualFirstProductInfoTitle);
