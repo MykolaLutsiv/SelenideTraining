@@ -14,20 +14,21 @@ public class HomePage {
 
     public static class DropdownAccount {
 
-        private By  dropDownAccount = By.cssSelector("[space*='header/dropdown/account']"),
-                    LoginPopup = By.cssSelector("[name='login']"),
-                    registrationPopup = By.cssSelector("[name='registration']");
+        private final By  dropDownAccount = By.cssSelector("[space*='header/dropdown/account']"),
+                    loginDropDownItem = By.cssSelector("[name='login']"),
+                registrationDropDownItem = By.cssSelector("[name='registration']");
 
-        public void openDropDownPopup() {
+        public DropdownAccount openDropDownPopup() {
             $(dropDownAccount).click();
+            return this;
         }
 
         public void openLoginPopup() {
-            $(LoginPopup).click();
+            $(loginDropDownItem).click();
         }
 
         public void openRegistrationPopup() {
-            $(registrationPopup).click();
+            $(registrationDropDownItem).click();
         }
 
 

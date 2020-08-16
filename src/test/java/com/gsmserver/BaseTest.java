@@ -5,7 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 
-public abstract class BasePage {
+public abstract class BaseTest {
 
     static {
         Configuration.baseUrl = "https://gsmserver.com";

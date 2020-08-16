@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class SearchResultPage {
 
-    private By productListItem = By.cssSelector(".product-view-list li");
+    private final By productListItem = By.cssSelector(".product-view-list li");
 
     @Step
     public String getSearchResultTitle() {
