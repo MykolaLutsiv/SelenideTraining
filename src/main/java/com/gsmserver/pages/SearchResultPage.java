@@ -1,6 +1,8 @@
-package com.gsmserver.Pages;
+package com.gsmserver.pages;
 
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -14,6 +16,11 @@ public class SearchResultPage {
     @Step
     public String getSearchResultTitle() {
         return $(".search-title-highlight").getText();
+    }
+
+    @Step
+    public void verifySearchResultTitle(String productName) {
+        $(".search-title-highlight").shouldBe(Condition.text(productName));
     }
 
     public int getSearchResultListSize() {

@@ -1,4 +1,4 @@
-package com.gsmserver.Pages;
+package com.gsmserver.pages;
 
 public class LoginPopup {
 
