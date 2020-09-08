@@ -19,7 +19,7 @@ public class ProductPageTests extends BaseTest {
     }
 
     @ParameterizedTest
-    @EnumSource
+    @EnumSource(Products.class)
     void increaseAndDecreaseProductCountTest(Products product) {
 
         ProductDto productDto = product.getDto();
