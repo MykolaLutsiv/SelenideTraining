@@ -1,18 +1,27 @@
 package com.gsmserver.pages;
 
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Selenide.$;
+
 public class LoginPopup {
 
-    public LoginPopup fillLogin() {
-
+    public LoginPopup fillLogin(String input) {
+        $("input[name='username']").val(input);
         return this;
     }
 
-    public LoginPopup fillPassword() {
-
+    public LoginPopup fillPassword(String input) {
+        $("input[name='password']").val(input);
         return this;
     }
 
     public void clickLogin() {
+        $("[class='col-12 col-sm-6'] [name]").click();
+    }
 
+    public void notificationIsPresent() {
+        $(".notification").isDisplayed();
     }
 }

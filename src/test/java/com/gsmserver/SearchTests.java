@@ -5,6 +5,9 @@ import com.gsmserver.pages.HomePage;
 import com.gsmserver.product.ProductComponent;
 import com.gsmserver.pages.SearchComponent;
 import com.gsmserver.pages.SearchResultPage;
+import com.gsmserver.product.ProductDto;
+import com.gsmserver.product.Products;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +20,12 @@ public class SearchTests extends BaseTest {
     @BeforeEach
     void openHomePage() {
         open("/");
-//        sleep(300);
+    }
+
+    @AfterEach
+    void  clearData() {
+        clearBrowserCookies();
+        clearBrowserLocalStorage();
     }
 
     @Test
@@ -26,32 +34,37 @@ public class SearchTests extends BaseTest {
         var productName = "Z3X Easy-Jtag Plus Full Set";
 
         new HomePage().searchComponent.searchFor(productName);
-        var actualSearchResultTitle = new SearchResultPage().getSearchResultTitle();
-        Assertions.assertEquals(productName, actualSearchResultTitle);
+        new SearchResultPage()
+                .verifySearchResultTitle(productName);
 
-        var actualSearchResultListSize = new SearchResultPage().getSearchResultListSize();
-        Assertions.assertEquals(3, actualSearchResultListSize);
+        new SearchResultPage()
+                .getSearchResultListSize()
+                .shouldHaveSize(3);
 
-        var actualFirstProductInfoTitle = new SearchResultPage().getFirstProductInfoTitle();
-        Assertions.assertEquals(productName, actualFirstProductInfoTitle);
+        new SearchResultPage()
+                .getFirstProductInfoTitle()
+                .shouldBe(text(productName));
     }
 
     @Test
     void searchForProductViaClickOnSeeAllTest() {
-        var productName = "Z3X Easy-Jtag Plus Full Set";
+        ProductDto productDto = Products.MedusaBox.getDto();
+        var productName = productDto.getTitle();
+
         new HomePage().searchComponent.fillSearchQue(productName).clickOnSeeAll();
-        var actualSearchResultTitle = new SearchResultPage().getSearchResultTitle();
-        Assertions.assertEquals(productName, actualSearchResultTitle);
+        new HomePage().targetProduct(productDto.getId()).verifyProductNameText(productName);
+        new SearchResultPage()
+                .getSearchResultTitle()
+                .shouldBe(text(productName));
 
     }
 
     @Test
     void searchProductByTitleAndGoToCartTest() {
-        clearBrowserCookies();
-        clearBrowserLocalStorage();
 
-        var productName = "Sigma Box with Cable Set";
-        var productId = "891032";
+        ProductDto productDto = Products.MedusaBox.getDto();
+        var productName = productDto.getTitle();
+        var productId = productDto.getId();
 
         new SearchComponent().searchFor(productName);
         new SearchResultPage().verifySearchResultTitle(productName);
@@ -64,11 +77,11 @@ public class SearchTests extends BaseTest {
 
         productComponent.clickOnAddToCart()
                 .getInCartQuantity()
-                .shouldHave(Condition.value("1"));
+                .shouldHave(value("1"));
 
         productComponent.clickOnPlus()
                 .getInCartQuantity()
-                .shouldHave(Condition.value("2"));
+                .shouldHave(value("2"));
 
         productComponent.clickOnGoToCart()
                 .getCartNumberOfProduct().shouldHaveSize(1);

@@ -1,11 +1,14 @@
 package com.gsmserver;
 
 import com.gsmserver.pages.HomePage;
+import com.gsmserver.product.ProductDto;
+import com.gsmserver.product.Products;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 
 public class HomePageTests extends BaseTest {
 
@@ -14,10 +17,16 @@ public class HomePageTests extends BaseTest {
         open("/");
 //        sleep(300);
     }
+    @AfterEach
+    void  clearData() {
+        clearBrowserCookies();
+        clearBrowserLocalStorage();
+    }
 
     @Test
     public void addToCartProductFromCaruselTest() {
-        new HomePage().targetProduct("860988")
+        ProductDto productDto = Products.MedusaBox.getDto();
+        new HomePage().targetProduct(productDto.getId())
                 .clickOnAddToCart();
     }
 

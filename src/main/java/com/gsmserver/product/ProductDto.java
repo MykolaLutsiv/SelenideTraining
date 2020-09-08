@@ -9,9 +9,15 @@ import lombok.Data;
 @Builder
 public class ProductDto {
 
-    private String id;
-    private String title;
-    private String basePath;
-    private String category;
+    @Builder.Default
+    private String id = "1";
+    @Builder.Default
+    private String title = "1";
+    @Builder.Default
+    private String basePath = "1";
+    @Builder.Default
+    private String category = "1";
+
+
 
 }

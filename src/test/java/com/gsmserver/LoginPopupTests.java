@@ -2,11 +2,12 @@ package com.gsmserver;
 
 import com.gsmserver.pages.HomePage;
 import com.gsmserver.pages.LoginPopup;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 
 public class LoginPopupTests extends BaseTest {
 
@@ -16,6 +17,11 @@ public class LoginPopupTests extends BaseTest {
         open("/");
 //        sleep(300);
     }
+    @AfterEach
+    void  clearData() {
+        clearBrowserCookies();
+        clearBrowserLocalStorage();
+    }
 
     @Test
     void openLoginPopupTest() {
@@ -23,11 +29,15 @@ public class LoginPopupTests extends BaseTest {
         new HomePage.DropdownAccount()
                 .openDropDownPopup()
                 .openLoginPopup();
+        sleep(3000);
 
         new LoginPopup()
-                .fillLogin()
-                .fillPassword()
+                .fillLogin("koka@mail.com")
+                .fillPassword("koka")
                 .clickLogin();
+
+        new LoginPopup()
+                .notificationIsPresent();
 
 
     }

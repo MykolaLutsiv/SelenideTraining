@@ -4,12 +4,19 @@ import com.codeborne.selenide.Condition;
 import com.gsmserver.product.ProductComponentSteps;
 import com.gsmserver.product.ProductDto;
 import com.gsmserver.product.Products;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ProductPageTests extends BaseTest {
+
+    @AfterEach
+    void  clearData() {
+        clearBrowserCookies();
+        clearBrowserLocalStorage();
+    }
 
     @ParameterizedTest
     @EnumSource

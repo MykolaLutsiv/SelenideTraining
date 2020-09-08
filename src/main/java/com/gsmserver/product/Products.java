@@ -13,11 +13,11 @@ import static com.gsmserver.product.ProductDto.*;
 public enum Products {
 
     MedusaBox(builder()
-                .id("860988")
-                .basePath("/medusa-pro-box")
-                .category("Boxes")
-                .title("Medusa PRO Box")
-                .build()),
+            .id("860988")
+            .basePath("/medusa-pro-box")
+            .category("Boxes")
+            .title("Medusa PRO Box")
+            .build()),
     MedusaPro2UpgradeSet(builder()
             .id("882882")
             .basePath("/medusa-pro-ii-upgrade-set/")

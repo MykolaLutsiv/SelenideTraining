@@ -24,7 +24,7 @@ public class HomePage {
 
         @Step
         public DropdownAccount openDropDownPopup() {
-            $(dropDownAccount).hover();
+            $(dropDownAccount).click();
             return this;
         }
 
