@@ -15,8 +15,9 @@ public class LoginPopupTests extends BaseTest {
     @BeforeEach
     void openHomePage() {
         open("/");
-//        sleep(300);
+
     }
+
     @AfterEach
     void  clearData() {
         clearBrowserCookies();
@@ -29,16 +30,49 @@ public class LoginPopupTests extends BaseTest {
         new HomePage.DropdownAccount()
                 .openDropDownPopup()
                 .openLoginPopup();
-        sleep(3000);
 
         new LoginPopup()
-                .fillLogin("koka@mail.com")
-                .fillPassword("koka")
+                .fillLogin("mykola.test@mailinator.com")
+                .fillPassword("Changeme123!")
                 .clickLogin();
 
+        new HomePage.DropdownAccount()
+                .verifyTitleAboveMyAccount("Hello, Mykola");
+    }
+
+    @Test
+    void loginAndLogoutTest() {
+
+        new HomePage.DropdownAccount()
+                .openDropDownPopup()
+                .openLoginPopup();
+
         new LoginPopup()
+                .fillLogin("mykola.test@mailinator.com")
+                .fillPassword("Changeme123!")
+                .clickLogin();
+
+        new HomePage.DropdownAccount()
+                .verifyTitleAboveMyAccount("Hello, Mykola")
+                .openDropDownPopup()
+                .logout()
+                .verifyTitleAboveMyAccount("Log In");
+    }
+
+    @Test
+    void failedLoginTest() {
+
+        new HomePage.DropdownAccount()
+                .openDropDownPopup()
+                .openLoginPopup();
+
+        new LoginPopup()
+                .fillLogin("mykola.test@mailinator.com")
+                .fillPassword("invalidPass")
+                .clickLogin()
                 .notificationIsPresent();
 
-
+        new HomePage.DropdownAccount()
+                .verifyTitleAboveMyAccount("Log In");
     }
 }

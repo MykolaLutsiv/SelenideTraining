@@ -17,8 +17,9 @@ public class LoginPopup {
         return this;
     }
 
-    public void clickLogin() {
+    public LoginPopup clickLogin() {
         $("[class='col-12 col-sm-6'] [name]").click();
+        return this;
     }
 
     public void notificationIsPresent() {
