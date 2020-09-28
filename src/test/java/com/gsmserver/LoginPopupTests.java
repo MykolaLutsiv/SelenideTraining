@@ -1,5 +1,6 @@
 package com.gsmserver;
 
+import com.github.javafaker.Faker;
 import com.gsmserver.pages.HomePage;
 import com.gsmserver.pages.LoginPopup;
 import org.junit.jupiter.api.AfterEach;
@@ -26,6 +27,7 @@ public class LoginPopupTests extends BaseTest {
 
     @Test
     void openLoginPopupTest() {
+        Faker faker = new Faker();
 
         new HomePage.DropdownAccount()
                 .openDropDownPopup()
