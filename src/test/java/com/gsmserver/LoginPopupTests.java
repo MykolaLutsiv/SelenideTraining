@@ -26,7 +26,7 @@ public class LoginPopupTests extends BaseTest {
     }
 
     @Test
-    void openLoginPopupTest() {
+    void successLogin() {
         Faker faker = new Faker();
 
         new HomePage.DropdownAccount()
@@ -41,6 +41,7 @@ public class LoginPopupTests extends BaseTest {
         new HomePage.DropdownAccount()
                 .verifyTitleAboveMyAccount("Hello, Mykola");
     }
+
 
     @Test
     void loginAndLogoutTest() {
