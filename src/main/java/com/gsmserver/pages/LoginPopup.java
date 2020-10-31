@@ -28,6 +28,6 @@ public class LoginPopup {
 
     @Step
     public void notificationIsPresent() {
-        $(".notification").isDisplayed();
+        $("[space='form/login/password'] .error-text").isDisplayed();
     }
 }

@@ -41,7 +41,7 @@ public class HomePage {
 
         @Step
         public DropdownAccount openDropDownPopup() {
-            sleep(500);
+            sleep(1000);
             $(dropDownAccount).click();
             return this;
         }
